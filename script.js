@@ -24,8 +24,25 @@ navigator.mediaDevices.getUserMedia({ video: true })
  });
 
 // this will capture the frame
+const countdownEl = document.getElementById("countdown");
+
 captureBtn.addEventListener("click", () => {
- ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
- const image = canvas.toDataURL("image/png");
- downloadLink.href = image;
+ let count = 3;
+ countdownEl.textContent = count;
+
+ const countdownInterval = setInterval(() => {
+  count--;
+  if (count === 0) {
+   clearInterval(countdownInterval);
+   countdownEl.textContent = "";
+
+   // 📸 Take the snapshot
+   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+   const image = canvas.toDataURL("image/png");
+   downloadLink.href = image;
+
+  } else {
+   countdownEl.textContent = count;
+  }
+ }, 1000);
 });
