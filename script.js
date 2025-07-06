@@ -27,13 +27,35 @@ const downloadLink = document.querySelector("#downloadLink");
   async function setupCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
   video.srcObject = stream;
- }).catch(err => {
-  console.error("Camera access failed:", err);
- });
-
-// this will capture the frame
-const countdownEl = document.getElementById("countdown");
-
+  
+    return new Promise(resolve => {
+      video.onloadedmetadata = () => {
+        // Match canvas size to video
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        overlay.width = video.videoWidth;
+        overlay.height = video.videoHeight;
+        resolve();
+      };
+    });
+  }
+  
+  async function loadModels() {
+    await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/face-api.js/models');
+  }
+  
+  async function startFaceDetection() {
+    const options = new faceapi.TinyFaceDetectorOptions();
+  
+    setInterval(async () => {
+      const detections = await faceapi.detectAllFaces(video, options);
+  
+      overlayCtx.clearRect(0, 0, overlay.width, overlay.height);
+      faceapi.draw.drawDetections(overlay, detections);
+    }, 100);
+  }
+  
+  // 📸 Snapshot logic with countdown
 captureBtn.addEventListener("click", () => {
  let count = 3;
  countdownEl.textContent = count;
