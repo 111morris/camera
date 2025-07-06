@@ -8,11 +8,11 @@ navigator.mediaDevices.getUserMedia({video: true})
   console.error("cant open it");
  }) */
 
-const video = document.querySelector("#video");
+  const video = document.querySelector("#video");
   const canvas = document.querySelector("#canvas"); // Snapshot canvas
-const ctx = canvas.getContext("2d");
-const captureBtn = document.querySelector("#captureBtn");
-const downloadLink = document.querySelector("#downloadLink");
+  const ctx = canvas.getContext("2d");
+  const captureBtn = document.querySelector("#captureBtn");
+  const downloadLink = document.querySelector("#downloadLink");
   const countdownEl = document.getElementById("countdown");
   
   // 🎯 Face detection overlay canvas
@@ -26,7 +26,7 @@ const downloadLink = document.querySelector("#downloadLink");
   
   async function setupCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-  video.srcObject = stream;
+    video.srcObject = stream;
   
     return new Promise(resolve => {
       video.onloadedmetadata = () => {
@@ -56,23 +56,31 @@ const downloadLink = document.querySelector("#downloadLink");
   }
   
   // 📸 Snapshot logic with countdown
-captureBtn.addEventListener("click", () => {
- let count = 3;
- countdownEl.textContent = count;
-
- const countdownInterval = setInterval(() => {
-  count--;
-  if (count === 0) {
-   clearInterval(countdownInterval);
-   countdownEl.textContent = "";
-
-   // 📸 Take the snapshot
-   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-   const image = canvas.toDataURL("image/png");
-   downloadLink.href = image;
-
-  } else {
-   countdownEl.textContent = count;
-  }
- }, 1000);
-});
+  captureBtn.addEventListener("click", () => {
+    let count = 3;
+    countdownEl.textContent = count;
+  
+    const countdownInterval = setInterval(() => {
+      count--;
+      if (count === 0) {
+        clearInterval(countdownInterval);
+        countdownEl.textContent = "";
+  
+        // 📷 Capture snapshot
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const image = canvas.toDataURL("image/png");
+        downloadLink.href = image;
+  
+      } else {
+        countdownEl.textContent = count;
+      }
+    }, 1000);
+  });
+  
+  // 🚀 Init everything
+  (async () => {
+    await loadModels();
+    await setupCamera();
+    await startFaceDetection();
+  })();
+  
