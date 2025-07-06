@@ -3,13 +3,17 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Camera</title>
+ <title>Camera Snapshot</title>
  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
- <video src="" id="cameraFeed" autoplay>
+ <!-- <video src="" id="cameraFeed" autoplay></video> -->
 
- </video>
+ <video id="video" autoplay></video>
+ <button id="captureBtn">📸 Capture</button>
+ <canvas id="canvas" width="640" height="480"></canvas>
+ <a id="downloadLink" download="snapshot.png">Download Snapshot</a>
  <script src="script.js"></script>
 </body>
 </html>
+
