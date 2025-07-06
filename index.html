@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <title>Camera Snapshot</title>
- <link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
- <!-- <video src="" id="cameraFeed" autoplay></video> -->
- <h2 id="countdown" style="font-size: 2rem; color: red; margin: 1rem 0;"></h2>
 
- <video id="video" autoplay></video>
+ <h2 id="countdown"></h2>
+
+ <div class="video-wrapper">
+  <video id="video" autoplay muted playsinline></video>
+  <canvas id="canvas"></canvas>
+ </div>
+
  <button id="captureBtn">📸 Capture</button>
- <canvas id="canvas" width="640" height="480"></canvas>
  <a id="downloadLink" download="snapshot.png">Download Snapshot</a>
- <script src="script.js"></script>
-</body>
-</html>
 
+ <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+ <script src="script.js"></script>
+
+</body>
+
+</html>
