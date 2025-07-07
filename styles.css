@@ -9,29 +9,73 @@ body {
  flex-direction: column;
  align-items: center;
  padding: 2rem;
- height: 100dvh;
+ height: 100vh;
  width: 100%;
- font-family: sans-serif;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background-color: #f0f2f5;
 }
 
-video,
-canvas {
- border: 2px solid #555;
- border-radius: 8px;
+h2#countdown {
+ font-size: 3rem;
+ color: #e63946;
  margin-bottom: 1rem;
-}
-
-#countdown {
- font-size: 2rem;
- color: red;
- margin: 1rem 0;
+ height: 3rem;
 }
 
 .video-wrapper {
  position: relative;
+ width: 100%;
+ max-width: 640px;
+ aspect-ratio: 4 / 3;
+ margin-bottom: 2rem;
 }
 
-#video,
-#canvas {
+video,
+canvas,
+#overlay {
  position: absolute;
+ width: 100%;
+ height: 100%;
+ border-radius: 12px;
+ object-fit: cover;
+ top: 0;
+ left: 0;
+}
+
+button#captureBtn {
+ padding: 0.75rem 1.5rem;
+ font-size: 1.2rem;
+ background-color: #457b9d;
+ color: #fff;
+ border: none;
+ border-radius: 8px;
+ cursor: pointer;
+ transition: background 0.3s ease;
+ margin-bottom: 1rem;
+}
+
+button#captureBtn:hover {
+ background-color: #1d3557;
+}
+
+a#downloadLink {
+ text-decoration: none;
+ color: #1d3557;
+ font-weight: bold;
+ background-color: #f1faee;
+ padding: 0.5rem 1rem;
+ border-radius: 6px;
+ border: 1px solid #a8dadc;
+ transition: background 0.3s ease;
+}
+
+a#downloadLink:hover {
+ background-color: #a8dadc;
+}
+
+.controls {
+ display: flex;
+ gap: 1rem;
+ flex-wrap: wrap;
+ justify-content: center;
 }
