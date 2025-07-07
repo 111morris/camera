@@ -16,7 +16,8 @@ const captureBtn = document.querySelector("#captureBtn");
 const downloadLink = document.querySelector("#downloadLink");
 const countdownEl = document.getElementById("countdown");
 
-// Start the camera
+let isCaptured = false;
+
 async function setupCamera() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -35,28 +36,42 @@ async function setupCamera() {
   }
 }
 
-// Snapshot with countdown
 captureBtn.addEventListener("click", () => {
-  let count = 3;
-  countdownEl.textContent = count;
+  if (!isCaptured) {
+    // Begin countdown before capture
+    let count = 3;
+    countdownEl.textContent = count;
 
-  const countdownInterval = setInterval(() => {
-    count--;
-    if (count === 0) {
-      clearInterval(countdownInterval);
-      countdownEl.textContent = "";
+    const countdownInterval = setInterval(() => {
+      count--;
+      if (count === 0) {
+        clearInterval(countdownInterval);
+        countdownEl.textContent = "";
 
-      // Capture frame
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const image = canvas.toDataURL("image/png");
-      downloadLink.href = image;
+        // Capture snapshot
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const image = canvas.toDataURL("image/png");
+        downloadLink.href = image;
 
-    } else {
-      countdownEl.textContent = count;
-    }
-  }, 1000);
+        // Update button to "Retake"
+        captureBtn.textContent = "🔄 Retake";
+        isCaptured = true;
+
+        // Pause video stream
+        video.pause();
+      } else {
+        countdownEl.textContent = count;
+      }
+    }, 1000);
+  } else {
+    // Retake logic: resume video and reset state
+    video.play();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    downloadLink.href = "#";
+    captureBtn.textContent = "📸 Capture";
+    isCaptured = false;
+  }
 });
 
-// Init
+// Init camera
 setupCamera();
-  
