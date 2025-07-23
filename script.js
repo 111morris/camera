@@ -42,7 +42,28 @@ captureBtn.addEventListener("click", () => {
     let count = 3;
     countdownEl.textContent = count;
 
+    const countdownInterval = setInterval(() => {
+      count--;
+      if (count === 0) {
+        clearInterval(countdownInterval);
+        countdownEl.textContent = "";
 
+        // Capture snapshot
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const image = canvas.toDataURL("image/png");
+        downloadLink.href = image;
+
+        // Update button to "Retake"
+        captureBtn.textContent = "🔄 Retake";
+        isCaptured = true;
+
+        // Pause video stream
+        video.pause();
+      } else {
+        countdownEl.textContent = count;
+      }
+    }, 1000);
+    
   } else {
     // Retake logic: resume video and reset state
     video.play();
