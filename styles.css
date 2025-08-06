@@ -83,20 +83,32 @@ canvas {
  text-decoration: none;
  color: #1d3557;
  font-weight: bold;
- background-color: #f1faee;
- padding: 0.5rem 1rem;
- border-radius: 6px;
- border: 1px solid #a8dadc;
- transition: background 0.3s ease;
+ background: #f1faee;
+ padding: 0.65rem 1.2rem;
+ border-radius: 10px;
+ border: 2px solid #a8dadc;
+ transition: all 0.3s ease;
+ box-shadow: 0 4px 15px rgba(168, 218, 220, 0.2);
 }
 
-a#downloadLink:hover {
- background-color: #a8dadc;
+#downloadLink:hover {
+ background: #a8dadc;
+ color: #000;
 }
 
-.controls {
- display: flex;
- gap: 1rem;
- flex-wrap: wrap;
- justify-content: center;
+/* Responsive Tweaks */
+@media (max-width: 480px) {
+ #countdown {
+  font-size: 2rem;
+ }
+
+ #captureBtn,
+ #downloadLink {
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+ }
+
+ .video-wrapper {
+  aspect-ratio: 1 / 1;
+ }
 }
