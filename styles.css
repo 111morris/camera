@@ -1,3 +1,4 @@
+/* RESET */
 * {
  margin: 0;
  padding: 0;
@@ -5,14 +6,15 @@
 }
 
 body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background: linear-gradient(135deg, #f0f2f5, #dfe6e9);
+ min-height: 100vh;
  display: flex;
  flex-direction: column;
  align-items: center;
- padding: 2rem;
- height: 100vh;
- width: 100%;
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- background-color: #f0f2f5;
+ justify-content: flex-start;
+ padding: 2rem 1rem;
+ color: #333;
 }
 
 h2#countdown {
