@@ -17,13 +17,16 @@ body {
  color: #333;
 }
 
-h2#countdown {
+/* Countdown Timer */
+#countdown {
  font-size: 3rem;
  color: #e63946;
- margin-bottom: 1rem;
+ margin-bottom: 1.5rem;
  height: 3rem;
+ text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Video + Canvas Wrapper */
 .video-wrapper {
  position: relative;
  width: 100%;
