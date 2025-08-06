@@ -47,25 +47,39 @@ canvas {
  object-fit: cover;
  top: 0;
  left: 0;
+ border-radius: 16px;
 }
 
-button#captureBtn {
- padding: 0.75rem 1.5rem;
+/* Controls */
+.controls {
+ display: flex;
+ gap: 1.2rem;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+}
+
+/* Capture Button */
+#captureBtn {
+ padding: 0.75rem 1.8rem;
  font-size: 1.2rem;
- background-color: #457b9d;
+ font-weight: bold;
+ background: linear-gradient(to right, #1d3557, #457b9d);
  color: #fff;
  border: none;
- border-radius: 8px;
+ border-radius: 10px;
  cursor: pointer;
- transition: background 0.3s ease;
- margin-bottom: 1rem;
+ transition: background 0.3s ease, transform 0.2s ease;
+ box-shadow: 0 4px 15px rgba(69, 123, 157, 0.3);
 }
 
-button#captureBtn:hover {
- background-color: #1d3557;
+#captureBtn:hover {
+ background: linear-gradient(to right, #0d1f3f, #2a6b9e);
+ transform: scale(1.05);
 }
 
-a#downloadLink {
+/* Download Link */
+#downloadLink {
  text-decoration: none;
  color: #1d3557;
  font-weight: bold;
